@@ -144,6 +144,26 @@ It automatically:
 
 You can view and start runs in the **Actions** tab of the repository.
 
+### Viewing screenshots, videos, and traces for failed tests
+
+When a workflow run has failures:
+- open the completed run in the **Actions** tab
+- download the `playwright-failure-evidence` artifact
+- extract the downloaded zip locally
+
+Common files you may find:
+- `*.png` → screenshot captured on failure
+- `*.webm` → video captured for failed test execution
+- `trace.zip` → Playwright trace bundle
+
+To open a trace locally:
+
+```bash
+python -m playwright show-trace trace.zip
+```
+
+If the trace file is inside a nested folder, point the command to that exact `trace.zip` path.
+
 ## Notes
 
 - This repository uses Playwright Python with pytest-playwright for execution.
