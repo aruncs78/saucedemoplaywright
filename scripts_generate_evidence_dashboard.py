@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 from html import escape
 import shutil
@@ -12,6 +13,10 @@ PACKAGED_SCREENSHOTS_DIR = EVIDENCE_DIR / 'screenshots'
 
 def safe_text(value, default=''):
     return escape(str(value)) if value is not None else default
+
+
+def safe_test_name(nodeid: str) -> str:
+    return re.sub(r'[^A-Za-z0-9._-]+', '_', nodeid)
 
 
 def load_results():
@@ -28,7 +33,7 @@ def build_test_cards(results):
         outcome = test.get('outcome', 'unknown')
         module = nodeid.split('::')[0] if '::' in nodeid else nodeid
         test_name = nodeid.split('::')[-1]
-        screenshot_name = ''.join(c if c.isalnum() or c in '._-' else '_' for c in nodeid) + '.png'
+        screenshot_name = safe_test_name(nodeid) + '.png'
         screenshot_path = SCREENSHOTS_DIR / screenshot_name
         screenshot_html = ''
         if screenshot_path.exists():
