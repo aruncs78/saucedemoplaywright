@@ -44,3 +44,24 @@ def open_cart(page):
     page.locator('[data-test="shopping-cart-link"]').click()
     expect(page).to_have_url(re.compile(r'/cart'))
     expect(page.locator('[data-test="title"]')).to_have_text('Your Cart')
+
+
+def _safe_test_name(nodeid: str) -> str:
+    return re.sub(r'[^A-Za-z0-9._-]+', '_', nodeid)
+
+
+@pytest.fixture(autouse=True)
+def capture_success_screenshot(request, page):
+    yield
+    if getattr(request.node, 'rep_call', None) and request.node.rep_call.passed:
+        screenshots_dir = Path('artifacts/screenshots')
+        screenshots_dir.mkdir(parents=True, exist_ok=True)
+        screenshot_name = f"{_safe_test_name(request.node.nodeid)}.png"
+        page.screenshot(path=str(screenshots_dir / screenshot_name), full_page=True)
+
+
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    rep = outcome.get_result()
+    setattr(item, f'rep_{rep.when}', rep)

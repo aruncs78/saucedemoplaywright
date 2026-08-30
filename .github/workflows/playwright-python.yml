@@ -27,7 +27,7 @@ jobs:
         run: python -m playwright install chromium
 
       - name: Create artifact directories
-        run: mkdir -p artifacts/test-results playwright-report test-results
+        run: mkdir -p artifacts/test-results artifacts/screenshots playwright-report test-results
 
       - name: Run Playwright tests with trace/video/screenshot on failure
         run: |
@@ -56,6 +56,13 @@ jobs:
         with:
           name: playwright-json-results
           path: artifacts/test-results/
+
+      - name: Upload success screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-success-screenshots
+          path: artifacts/screenshots/
 
       - name: Upload failure evidence
         if: always()

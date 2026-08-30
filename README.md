@@ -140,9 +140,17 @@ It automatically:
 - installs Playwright Chromium
 - runs the full test suite when manually started from GitHub Actions
 - uploads HTML and JSON test artifacts
+- uploads one screenshot for each successful test
 - retains screenshots, videos, and traces on failure
 
 You can view and start runs in the **Actions** tab of the repository.
+
+### Viewing screenshots for successful tests
+
+For every successful test, the workflow uploads a screenshot artifact:
+- download `playwright-success-screenshots`
+- extract the zip locally
+- open the generated `.png` files for each test case
 
 ### Viewing screenshots, videos, and traces for failed tests
 
