@@ -132,14 +132,17 @@ This repository is CI-ready with GitHub Actions.
 Workflow file:
 - `.github/workflows/playwright-python.yml`
 
+It currently runs only by manual trigger (`workflow_dispatch`).
+
 It automatically:
 - checks out the repository
 - installs Python dependencies
 - installs Playwright Chromium
-- runs the full test suite on pushes, pull requests, and manual trigger
+- runs the full test suite when manually started from GitHub Actions
 - uploads HTML and JSON test artifacts
+- retains screenshots, videos, and traces on failure
 
-You can view runs in the **Actions** tab of the repository.
+You can view and start runs in the **Actions** tab of the repository.
 
 ## Notes
 

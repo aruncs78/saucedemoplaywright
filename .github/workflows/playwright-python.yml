@@ -1,10 +1,6 @@
 name: SauceDemo Playwright Python CI
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -31,9 +27,9 @@ jobs:
         run: python -m playwright install chromium
 
       - name: Create artifact directories
-        run: mkdir -p artifacts/test-results playwright-report
+        run: mkdir -p artifacts/test-results playwright-report test-results
 
-      - name: Run Playwright tests
+      - name: Run Playwright tests with trace/video/screenshot on failure
         run: |
           pytest tests \
             --browser chromium \
@@ -41,7 +37,11 @@ jobs:
             --html=playwright-report/index.html \
             --self-contained-html \
             --json-report \
-            --json-report-file=artifacts/test-results/results.json
+            --json-report-file=artifacts/test-results/results.json \
+            --output test-results \
+            --tracing retain-on-failure \
+            --video retain-on-failure \
+            --screenshot only-on-failure
 
       - name: Upload Playwright HTML report
         if: always()
@@ -56,3 +56,10 @@ jobs:
         with:
           name: playwright-json-results
           path: artifacts/test-results/
+
+      - name: Upload failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-failure-evidence
+          path: test-results/
