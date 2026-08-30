@@ -125,8 +125,23 @@ secret_sauce
 Dashboard:
 - `dashboard/saucedemo-test-dashboard.html`
 
+## CI automation
+
+This repository is CI-ready with GitHub Actions.
+
+Workflow file:
+- `.github/workflows/playwright-python.yml`
+
+It automatically:
+- checks out the repository
+- installs Python dependencies
+- installs Playwright Chromium
+- runs the full test suite on pushes, pull requests, and manual trigger
+- uploads HTML and JSON test artifacts
+
+You can view runs in the **Actions** tab of the repository.
+
 ## Notes
 
 - This repository uses Playwright Python with pytest-playwright for execution.
 - The included dashboard is a static report-style artifact summarizing a successful run.
-- If you want CI next, GitHub Actions can be added to run this suite automatically on push.

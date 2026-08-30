@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+playwright-report/
+artifacts/test-results/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+.vscode/
+.idea/
