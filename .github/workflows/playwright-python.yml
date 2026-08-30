@@ -27,7 +27,7 @@ jobs:
         run: python -m playwright install chromium
 
       - name: Create artifact directories
-        run: mkdir -p artifacts/test-results artifacts/screenshots playwright-report test-results
+        run: mkdir -p artifacts/test-results artifacts/screenshots artifacts/evidence-dashboard playwright-report test-results
 
       - name: Run Playwright tests with trace/video/screenshot on failure
         run: |
@@ -42,6 +42,10 @@ jobs:
             --tracing retain-on-failure \
             --video retain-on-failure \
             --screenshot only-on-failure
+
+      - name: Generate screenshot evidence dashboard
+        if: always()
+        run: python scripts_generate_evidence_dashboard.py
 
       - name: Upload Playwright HTML report
         if: always()
@@ -63,6 +67,13 @@ jobs:
         with:
           name: playwright-success-screenshots
           path: artifacts/screenshots/
+
+      - name: Upload screenshot evidence dashboard
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-evidence-dashboard
+          path: artifacts/evidence-dashboard/
 
       - name: Upload failure evidence
         if: always()

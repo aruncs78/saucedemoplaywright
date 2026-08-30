@@ -12,6 +12,7 @@ Automated end-to-end UI test suite for [SauceDemo](https://www.saucedemo.com) us
 - Checkout flow tests
 - Navigation and menu tests
 - A polished local HTML dashboard summarizing one sample execution
+- An automatically generated screenshot evidence dashboard in CI
 
 ## Project structure
 
@@ -25,6 +26,7 @@ Automated end-to-end UI test suite for [SauceDemo](https://www.saucedemo.com) us
 │   ├── test_cart_checkout.py
 │   ├── test_inventory.py
 │   └── test_navigation.py
+├── scripts_generate_evidence_dashboard.py
 ├── pytest.ini
 ├── requirements.txt
 └── run_playwright_pytest.py
@@ -141,6 +143,7 @@ It automatically:
 - runs the full test suite when manually started from GitHub Actions
 - uploads HTML and JSON test artifacts
 - uploads one screenshot for each successful test
+- uploads an HTML screenshot evidence dashboard generated from the latest run
 - retains screenshots, videos, and traces on failure
 
 You can view and start runs in the **Actions** tab of the repository.
@@ -151,6 +154,27 @@ For every successful test, the workflow uploads a screenshot artifact:
 - download `playwright-success-screenshots`
 - extract the zip locally
 - open the generated `.png` files for each test case
+
+### Viewing the HTML screenshot evidence dashboard
+
+For each CI run, the workflow now also uploads:
+- `playwright-evidence-dashboard`
+
+This artifact contains an HTML file that visually presents:
+- each executed test
+- pass/fail outcome
+- execution time
+- screenshot evidence thumbnail for successful runs
+
+To view it:
+- open the completed GitHub Actions run
+- download the `playwright-evidence-dashboard` artifact
+- extract it locally
+- open `index.html`
+
+Note:
+- keep the extracted artifact folder structure intact
+- the downloaded evidence dashboard artifact now includes both `index.html` and the packaged `screenshots/` folder, so it should open correctly as-is
 
 ### Viewing screenshots, videos, and traces for failed tests
 
@@ -176,3 +200,4 @@ If the trace file is inside a nested folder, point the command to that exact `tr
 
 - This repository uses Playwright Python with pytest-playwright for execution.
 - The included dashboard is a static report-style artifact summarizing a successful run.
+- The CI-generated evidence dashboard is the best artifact for visual proof that tests were executed.
