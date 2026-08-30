@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SauceDemo Playwright Test Dashboard</title>
+  <style>body{font-family:Arial,sans-serif;margin:0;padding:24px;background:linear-gradient(180deg,#08111d,#0b1220);color:#e5eefb}.container{max-width:1200px;margin:0 auto}.hero,.card{background:rgba(15,23,42,.88);border:1px solid rgba(148,163,184,.16);border-radius:18px;padding:24px;box-shadow:0 20px 60px rgba(2,8,23,.45)}.hero{margin-bottom:20px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}.metric{font-size:2rem;font-weight:700}.label{color:#94a3b8;font-size:.9rem;text-transform:uppercase}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}.badge{display:inline-block;padding:8px 12px;border-radius:999px;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.22);margin:4px 6px 0 0}.pass{color:#b8f5cb;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.22);padding:6px 10px;border-radius:999px}table{width:100%;border-collapse:collapse}th,td{padding:12px;border-bottom:1px solid rgba(148,163,184,.12);text-align:left}th{color:#9fb2cb}code{background:rgba(255,255,255,.05);padding:2px 6px;border-radius:6px}h1,h2{margin-top:0}</style>
+</head>
+<body>
+<div class="container">
+<div class="hero">
+<h1>SauceDemo Automated Test Results</h1>
+<p>Playwright Python + pytest-playwright execution summary for <code>https://www.saucedemo.com</code>.</p>
+<p><span class="pass">19 Passed</span> <span class="badge">0 Failed</span> <span class="badge">Chromium</span> <span class="badge">Pass Rate: 100%</span></p>
+</div>
+<div class="metrics">
+<div class="card"><div class="label">Total Tests</div><div class="metric">19</div></div>
+<div class="card"><div class="label">Passed</div><div class="metric">19</div></div>
+<div class="card"><div class="label">Failed</div><div class="metric">0</div></div>
+<div class="card"><div class="label">Pass Rate</div><div class="metric">100%</div></div>
+</div>
+<div class="grid">
+<div class="card"><h2>Coverage Categories</h2><div><span class="badge">Smoke</span><span class="badge">Authentication</span><span class="badge">Negative Validation</span><span class="badge">Inventory</span><span class="badge">Product Detail</span><span class="badge">Sorting</span><span class="badge">Cart</span><span class="badge">Checkout</span><span class="badge">Navigation/Menu</span><span class="badge">UI/State Assertions</span></div></div>
+<div class="card"><h2>Artifacts</h2><ul><li><code>playwright-report/index.html</code></li><li><code>artifacts/test-results/results.json</code></li><li><code>artifacts/saucedemo-home.png</code></li></ul></div>
+</div>
+<div class="card">
+<h2>Executed Test Cases</h2>
+<table>
+<tr><th>Category</th><th>Test Case</th><th>Status</th></tr>
+<tr><td>Authentication</td><td>Standard user can log in successfully</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Authentication</td><td>Locked out user sees access error</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Validation</td><td>Empty login submission shows username required</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Validation</td><td>Missing password shows required error</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Validation</td><td>Invalid credentials show matching error</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Inventory</td><td>Inventory page shows all products with details</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Product Detail</td><td>Selected product details page renders correct item data</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Sorting</td><td>Sorting changes order from default to low-to-high</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Inventory</td><td>Problem user inventory loads products and visible images</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Inventory</td><td>Performance glitch user reaches inventory</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Cart</td><td>Cart badge updates after adding a product</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Cart</td><td>User can add multiple items and see correct badge count</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Cart</td><td>User can remove item from cart</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Checkout</td><td>Checkout validation requires first name</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Checkout</td><td>User can complete checkout successfully</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Navigation</td><td>Burger menu can be opened and closed</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Navigation</td><td>About link navigates to Sauce Labs site</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Navigation</td><td>Logout returns user to login page</td><td><span class="pass">Passed</span></td></tr>
+<tr><td>Navigation</td><td>Continue shopping from cart returns to inventory</td><td><span class="pass">Passed</span></td></tr>
+</table>
+</div>
+</div>
+</body>
+</html>
